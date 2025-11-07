@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <rect width="400" height="400" fill="#ffd700"/>
+  <text x="200" y="180" font-family="Arial, sans-serif" font-size="28" fill="#333" text-anchor="middle" font-weight="bold">Staedtler</text>
+  <text x="200" y="210" font-family="Arial, sans-serif" font-size="28" fill="#333" text-anchor="middle" font-weight="bold">Pencil</text>
+  <rect x="190" y="240" width="20" height="120" fill="#333"/>
+  <polygon points="190,240 210,240 200,220" fill="#ffb3ba"/>
+  <rect x="185" y="340" width="30" height="20" fill="#ff69b4"/>
+</svg>

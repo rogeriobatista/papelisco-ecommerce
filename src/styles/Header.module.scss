@@ -1,0 +1,204 @@
+.header {
+  background: #fff;
+  border-bottom: 1px solid #e0e0e0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.logoIcon {
+  font-size: 1.8rem;
+}
+
+.logoText {
+  color: #1e90ff;
+}
+
+/* Navigation */
+.nav {
+  display: flex;
+  gap: 2rem;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.navLink {
+  text-decoration: none;
+  color: #666;
+  font-weight: 500;
+  transition: color 0.2s;
+  padding: 0.5rem 0;
+  position: relative;
+}
+
+.navLink:hover {
+  color: #1e90ff;
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background: #1e90ff;
+  transition: width 0.3s;
+}
+
+.navLink:hover::after {
+  width: 100%;
+}
+
+/* User Section */
+.userSection {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.authButtons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.loginBtn,
+.signupBtn {
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.9rem;
+}
+
+.loginBtn {
+  background: transparent;
+  color: #666;
+  border: 1px solid #e0e0e0;
+}
+
+.loginBtn:hover {
+  background: #f5f5f5;
+  color: #333;
+}
+
+.signupBtn {
+  background: #1e90ff;
+  color: white;
+}
+
+.signupBtn:hover {
+  background: #0066cc;
+}
+
+/* Mobile Menu Button */
+.mobileMenuBtn {
+  display: none;
+  flex-direction: column;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  gap: 3px;
+
+  @media (max-width: 768px) {
+    display: flex;
+  }
+
+  span {
+    width: 20px;
+    height: 2px;
+    background: #333;
+    transition: all 0.3s;
+  }
+}
+
+/* Mobile Menu */
+.mobileMenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border-bottom: 1px solid #e0e0e0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+
+  @media (max-width: 768px) {
+    display: block;
+  }
+}
+
+.mobileNavLink {
+  display: block;
+  text-decoration: none;
+  color: #666;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-weight: 500;
+}
+
+.mobileNavLink:hover {
+  color: #1e90ff;
+}
+
+.mobileAuthButtons {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #f0f0f0;
+}
+
+.mobileLoginBtn,
+.mobileSignupBtn {
+  flex: 1;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.mobileLoginBtn {
+  background: transparent;
+  color: #666;
+  border: 1px solid #e0e0e0;
+}
+
+.mobileSignupBtn {
+  background: #1e90ff;
+  color: white;
+}
