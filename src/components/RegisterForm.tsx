@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useAppDispatch } from '@/features/hooks';
+import { setUser } from '@/features/auth/authSlice';
 import Link from 'next/link';
 import styles from '@/styles/AuthForm.module.scss';
 
@@ -17,6 +19,7 @@ interface RegisterFormData {
 
 export default function RegisterForm() {
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const [formData, setFormData] = useState<RegisterFormData>({
     email: '',
     password: '',
@@ -104,8 +107,11 @@ export default function RegisterForm() {
       const data = await response.json();
 
       if (response.ok) {
-        // Registration successful, redirect to login
-        router.push('/auth/login?message=Registration successful! Please sign in.');
+        // Registration successful, user is now logged in
+        dispatch(setUser(data.user));
+        
+        // Redirect to home page
+        router.push('/');
       } else {
         if (data.details && Array.isArray(data.details)) {
           // Password validation errors

@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../styles/globals.scss";
 import { Providers } from './providers';
+import { ToastProvider } from '../contexts/ToastContext';
+import { ThemeProvider } from '../contexts/ThemeContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import CartDrawer from '../components/CartDrawer';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,6 +21,14 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Papelisco Store",
   description: "E-commerce store for mobile phones, electronics, books, and more",
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/icon-logo.png', type: 'image/png' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/icon-logo.png',
+  },
 };
 
 export default function RootLayout({
@@ -30,15 +41,20 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Providers>
-          <div className="app-layout">
-            <Header />
-            <main className="main-content">
-              {children}
-            </main>
-            <Footer />
-          </div>
-        </Providers>
+        <ThemeProvider>
+          <Providers>
+            <ToastProvider>
+              <div className="app-layout">
+                <Header />
+                <main className="main-content">
+                  {children}
+                </main>
+                <Footer />
+                <CartDrawer />
+              </div>
+            </ToastProvider>
+          </Providers>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -7,6 +7,7 @@ import { logout } from '../features/auth/authSlice';
 import { toggleCart } from '../features/cart/cartSlice';
 import UserDropdown from './UserDropdown';
 import CartIcon from './CartIcon';
+import ThemeSwitcher from './ThemeSwitcher';
 import styles from '../styles/Header.module.scss';
 
 export default function Header() {
@@ -32,17 +33,17 @@ export default function Header() {
       <div className={styles.container}>
         {/* Logo/Brand */}
         <Link href="/" className={styles.logo}>
-          <span className={styles.logoIcon}>📝</span>
-          <span className={styles.logoText}>Papelisco</span>
+          <img 
+            src="/icon-logo.png" 
+            alt="Papelisco" 
+            className={styles.logoImage}
+          />
         </Link>
 
         {/* Navigation */}
         <nav className={styles.nav}>
           <Link href="/" className={styles.navLink}>
             Products
-          </Link>
-          <Link href="/categories" className={styles.navLink}>
-            Categories
           </Link>
           <Link href="/about" className={styles.navLink}>
             About
@@ -54,6 +55,7 @@ export default function Header() {
 
         {/* User Section */}
         <div className={styles.userSection}>
+          <ThemeSwitcher />
           <CartIcon />
           {isLoggedIn ? (
             <UserDropdown 
@@ -94,11 +96,11 @@ export default function Header() {
       {/* Mobile Menu */}
       {isMenuOpen && (
         <div className={styles.mobileMenu}>
+          <div className={styles.mobileMenuHeader}>
+            <ThemeSwitcher />
+          </div>
           <Link href="/" className={styles.mobileNavLink}>
             Products
-          </Link>
-          <Link href="/categories" className={styles.mobileNavLink}>
-            Categories
           </Link>
           <Link href="/about" className={styles.mobileNavLink}>
             About

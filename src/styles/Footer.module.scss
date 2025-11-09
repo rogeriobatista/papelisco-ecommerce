@@ -1,6 +1,6 @@
 .footer {
-  background: #333;
-  color: #fff;
+  background: #181825;
+  color: #cdd6f4;
   margin-top: auto;
 }
 
@@ -32,11 +32,11 @@
   font-size: 1.2rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
-  color: #fff;
+  color: #cdd6f4;
 }
 
 .description {
-  color: #ccc;
+  color: #bac2de;
   line-height: 1.6;
   font-size: 0.9rem;
   margin: 0;
@@ -54,16 +54,16 @@
   justify-content: center;
   width: 40px;
   height: 40px;
-  background: #444;
-  color: #ccc;
+  background: #313244;
+  color: #bac2de;
   border-radius: 50%;
   text-decoration: none;
   transition: all 0.3s;
 }
 
 .socialLink:hover {
-  background: #1e90ff;
-  color: white;
+  background: #89b4fa;
+  color: #1e1e2e;
   transform: translateY(-2px);
 }
 
@@ -77,7 +77,7 @@
 }
 
 .footerLink {
-  color: #ccc;
+  color: #bac2de;
   text-decoration: none;
   font-size: 0.9rem;
   transition: color 0.2s;
@@ -85,7 +85,7 @@
 }
 
 .footerLink:hover {
-  color: #1e90ff;
+  color: #89b4fa;
 }
 
 .footerBottom {
@@ -93,7 +93,7 @@
   justify-content: space-between;
   align-items: center;
   padding-top: 2rem;
-  border-top: 1px solid #444;
+  border-top: 1px solid #45475a;
   flex-wrap: wrap;
   gap: 1rem;
 
@@ -104,7 +104,7 @@
 }
 
 .copyright p {
-  color: #aaa;
+  color: #a6adc8;
   font-size: 0.9rem;
   margin: 0;
 }
@@ -116,7 +116,7 @@
 }
 
 .paymentText {
-  color: #aaa;
+  color: #a6adc8;
   font-size: 0.9rem;
 }
 

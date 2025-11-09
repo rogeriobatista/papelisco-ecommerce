@@ -1,14 +1,15 @@
 // AuthForm.module.scss
 
-// Color variables
-$primary-color: #2563eb;
-$error-color: #dc2626;
-$success-color: #16a34a;
-$text-color: #1f2937;
-$light-gray: #f9fafb;
-$border-color: #d1d5db;
-$white: #ffffff;
-$link-color: #2563eb;
+// Dark theme color variables
+$primary-color: #89b4fa;
+$error-color: #f38ba8;
+$success-color: #a6e3a1;
+$text-color: #cdd6f4;
+$light-gray: #313244;
+$border-color: #45475a;
+$dark-bg: #0f0f23;
+$card-bg: #1e1e2e;
+$link-color: #89b4fa;
 
 .authContainer {
   min-height: 100vh;
@@ -16,13 +17,14 @@ $link-color: #2563eb;
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  background-color: $light-gray;
+  background-color: $dark-bg;
 }
 
 .authCard {
-  background: $white;
+  background: $card-bg;
   border-radius: 12px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  border: 1px solid $border-color;
   padding: 2rem;
   width: 100%;
   max-width: 480px;
@@ -40,7 +42,7 @@ $link-color: #2563eb;
   }
 
   p {
-    color: #6b7280;
+    color: #9399b2;
     font-size: 1rem;
   }
 }
@@ -78,6 +80,8 @@ $link-color: #2563eb;
     border: 1px solid $border-color;
     border-radius: 8px;
     font-size: 1rem;
+    background-color: $card-bg;
+    color: $text-color;
     transition: border-color 0.2s, box-shadow 0.2s;
 
     &:focus {
@@ -94,7 +98,7 @@ $link-color: #2563eb;
 
   .inputDisabled {
     background-color: $light-gray !important;
-    color: #6b7280 !important;
+    color: #6c7086 !important;
     cursor: not-allowed !important;
   }
 
@@ -127,7 +131,7 @@ $link-color: #2563eb;
   width: 100%;
   padding: 0.75rem 1rem;
   background-color: $primary-color;
-  color: $white;
+  color: #11111b;
   border: none;
   border-radius: 8px;
   font-size: 1rem;
@@ -137,18 +141,18 @@ $link-color: #2563eb;
   margin-top: 1rem;
 
   &:hover:not(:disabled) {
-    background-color: #1d4ed8;
+    background-color: #74c7ec;
   }
 
   &:disabled {
-    background-color: #9ca3af;
+    background-color: #585b70;
     cursor: not-allowed;
   }
 }
 
 .errorMessage {
-  background-color: #fef2f2;
-  border: 1px solid #fecaca;
+  background-color: #302d39;
+  border: 1px solid #f38ba8;
   color: $error-color;
   padding: 0.75rem;
   border-radius: 8px;
@@ -157,8 +161,8 @@ $link-color: #2563eb;
 }
 
 .successMessage {
-  background-color: #f0fdf4;
-  border: 1px solid #bbf7d0;
+  background-color: #2d3139;
+  border: 1px solid #a6e3a1;
   color: $success-color;
   padding: 0.75rem;
   border-radius: 8px;
@@ -178,7 +182,7 @@ $link-color: #2563eb;
   margin-top: 2rem;
 
   p {
-    color: #6b7280;
+    color: #9399b2;
     font-size: 0.875rem;
   }
 }

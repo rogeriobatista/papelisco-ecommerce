@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { hashPassword, isValidEmail, isValidPassword } from '@/lib/auth';
+import { hashPassword, isValidEmail, isValidPassword, generateToken } from '@/lib/auth';
 
 export async function POST(request: NextRequest) {
   try {
@@ -68,13 +68,43 @@ export async function POST(request: NextRequest) {
       }
     });
 
-    return NextResponse.json(
+    // Generate JWT token
+    const token = generateToken({
+      userId: user.id,
+      email: user.email,
+      role: user.role,
+    });
+
+    // Create session in database
+    const sessionExpires = new Date();
+    sessionExpires.setDate(sessionExpires.getDate() + 7); // 7 days
+
+    const session = await prisma.session.create({
+      data: {
+        sessionToken: token,
+        userId: user.id,
+        expires: sessionExpires,
+      }
+    });
+
+    // Set HTTP-only cookie and return response
+    const response = NextResponse.json(
       { 
         message: 'User created successfully',
-        user 
+        user,
+        token
       },
       { status: 201 }
     );
+
+    response.cookies.set('auth-token', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: 7 * 24 * 60 * 60, // 7 days in seconds
+    });
+
+    return response;
 
   } catch (error) {
     console.error('Registration error:', error);

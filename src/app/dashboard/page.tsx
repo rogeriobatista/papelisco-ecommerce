@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAppSelector, useAppDispatch } from '@/app/hooks';
 import { logout, setUser } from '@/features/auth/authSlice';
+import styles from './Dashboard.module.scss';
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -51,123 +52,152 @@ export default function DashboardPage() {
 
   if (isLoading || !isLoggedIn) {
     return (
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
-        <div>Loading...</div>
+      <div className={styles.loadingContainer}>
+        <div className={styles.spinner}>Loading...</div>
       </div>
     );
   }
 
   return (
-    <div style={{ padding: '2rem', maxWidth: '1200px', margin: '0 auto' }}>
-      <header style={{ 
-        display: 'flex', 
-        justifyContent: 'space-between', 
-        alignItems: 'center',
-        marginBottom: '2rem',
-        paddingBottom: '1rem',
-        borderBottom: '1px solid #e5e7eb'
-      }}>
-        <h1 style={{ fontSize: '2rem', fontWeight: 'bold', color: '#1f2937' }}>
-          Dashboard
-        </h1>
-        <button
-          onClick={handleLogout}
-          style={{
-            padding: '0.5rem 1rem',
-            backgroundColor: '#dc2626',
-            color: 'white',
-            border: 'none',
-            borderRadius: '6px',
-            cursor: 'pointer',
-            fontWeight: '500'
-          }}
-        >
-          Logout
-        </button>
+    <div className={styles.dashboardPage}>
+      {/* Dashboard Header */}
+      <header className={styles.dashboardHeader}>
+        <div className={styles.headerContent}>
+          <Link href="/" className={styles.logo}>
+            <img 
+              src="/icon-logo.png" 
+              alt="Papelisco" 
+              className={styles.logoImage}
+            />
+          </Link>
+          
+          <nav className={styles.headerNav}>
+            <Link href="/" className={styles.navLink}>
+              Back to Store
+            </Link>
+            {user?.role === 'ADMIN' && (
+              <Link href="/admin" className={styles.adminLink}>
+                Admin Dashboard
+              </Link>
+            )}
+          </nav>
+
+          <div className={styles.userSection}>
+            <span className={styles.welcomeText}>Welcome, {user?.firstName}!</span>
+            <button onClick={handleLogout} className={styles.logoutBtn}>
+              Logout
+            </button>
+          </div>
+        </div>
       </header>
 
-      <div style={{ 
-        backgroundColor: '#f9fafb',
-        padding: '1.5rem',
-        borderRadius: '8px',
-        marginBottom: '2rem'
-      }}>
-        <h2 style={{ fontSize: '1.25rem', fontWeight: '600', marginBottom: '1rem' }}>
-          Welcome back, {user?.firstName} {user?.lastName}!
-        </h2>
-        
-        <div style={{ display: 'grid', gap: '1rem' }}>
-          <div>
-            <strong>Email:</strong> {user?.email}
+      {/* Dashboard Content */}
+      <main className={styles.dashboardContent}>
+        <div className={styles.container}>
+          <div className={styles.pageHeader}>
+            <h1 className={styles.pageTitle}>My Dashboard</h1>
+            <p className={styles.pageSubtitle}>Manage your account and view your activity</p>
           </div>
-          {user?.phone && (
-            <div>
-              <strong>Phone:</strong> {user.phone}
+
+          {/* User Info Card */}
+          <div className={styles.userInfoCard}>
+            <div className={styles.userAvatar}>
+              {user?.image ? (
+                <img src={user.image} alt={user.firstName || user.email} />
+              ) : (
+                <span className={styles.avatarInitial}>
+                  {(user?.firstName || user?.email || '').charAt(0).toUpperCase()}
+                </span>
+              )}
             </div>
-          )}
-          <div>
-            <strong>Role:</strong> {user?.role}
+            
+            <div className={styles.userDetails}>
+              <h2 className={styles.userName}>
+                {user?.firstName && user?.lastName 
+                  ? `${user.firstName} ${user.lastName}` 
+                  : user?.firstName || user?.email}
+              </h2>
+              
+              <div className={styles.userMeta}>
+                <div className={styles.metaItem}>
+                  <strong>Email:</strong> {user?.email}
+                </div>
+                {user?.phone && (
+                  <div className={styles.metaItem}>
+                    <strong>Phone:</strong> {user.phone}
+                  </div>
+                )}
+                <div className={styles.metaItem}>
+                  <strong>Role:</strong> 
+                  <span className={`${styles.roleBadge} ${styles[user?.role?.toLowerCase() || '']}`}>
+                    {user?.role}
+                  </span>
+                </div>
+                <div className={styles.metaItem}>
+                  <strong>Status:</strong> 
+                  <span className={`${styles.statusBadge} ${user?.isVerified ? styles.verified : styles.unverified}`}>
+                    {user?.isVerified ? 'Verified' : 'Unverified'}
+                  </span>
+                </div>
+                <div className={styles.metaItem}>
+                  <strong>Member Since:</strong> {user?.createdAt ? new Date(user.createdAt).toLocaleDateString() : 'N/A'}
+                </div>
+              </div>
+            </div>
           </div>
-          <div>
-            <strong>Account Status:</strong> {user?.isVerified ? 'Verified' : 'Unverified'}
+
+          {/* Dashboard Grid */}
+          <div className={styles.dashboardGrid}>
+            <div className={styles.dashboardCard}>
+              <div className={styles.cardIcon}>📦</div>
+              <div className={styles.cardContent}>
+                <h3 className={styles.cardTitle}>Recent Orders</h3>
+                <p className={styles.cardDescription}>View and track your recent purchases</p>
+                <div className={styles.cardStats}>No orders yet</div>
+                <Link href="/orders" className={styles.cardAction}>
+                  View All Orders
+                </Link>
+              </div>
+            </div>
+
+            <div className={styles.dashboardCard}>
+              <div className={styles.cardIcon}>❤️</div>
+              <div className={styles.cardContent}>
+                <h3 className={styles.cardTitle}>Wishlist</h3>
+                <p className={styles.cardDescription}>Items you've saved for later</p>
+                <div className={styles.cardStats}>0 items</div>
+                <Link href="/wishlist" className={styles.cardAction}>
+                  View Wishlist
+                </Link>
+              </div>
+            </div>
+
+            <div className={styles.dashboardCard}>
+              <div className={styles.cardIcon}>⚙️</div>
+              <div className={styles.cardContent}>
+                <h3 className={styles.cardTitle}>Account Settings</h3>
+                <p className={styles.cardDescription}>Manage your account preferences</p>
+                <div className={styles.cardStats}>Profile, Security, Preferences</div>
+                <Link href="/profile" className={styles.cardAction}>
+                  Edit Profile
+                </Link>
+              </div>
+            </div>
+
+            <div className={styles.dashboardCard}>
+              <div className={styles.cardIcon}>🛒</div>
+              <div className={styles.cardContent}>
+                <h3 className={styles.cardTitle}>Shopping</h3>
+                <p className={styles.cardDescription}>Continue shopping our latest products</p>
+                <div className={styles.cardStats}>Discover new items</div>
+                <Link href="/" className={styles.cardAction}>
+                  Browse Products
+                </Link>
+              </div>
+            </div>
           </div>
-          <div>
-            <strong>Member Since:</strong> {user?.createdAt ? new Date(user.createdAt).toLocaleDateString() : 'N/A'}
-          </div>
         </div>
-      </div>
-
-      <div style={{ display: 'grid', gap: '1rem', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
-        <div style={{
-          backgroundColor: 'white',
-          padding: '1.5rem',
-          borderRadius: '8px',
-          boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)'
-        }}>
-          <h3 style={{ fontSize: '1.125rem', fontWeight: '600', marginBottom: '1rem' }}>
-            Recent Orders
-          </h3>
-          <p style={{ color: '#6b7280' }}>No orders yet</p>
-        </div>
-
-        <div style={{
-          backgroundColor: 'white',
-          padding: '1.5rem',
-          borderRadius: '8px',
-          boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)'
-        }}>
-          <h3 style={{ fontSize: '1.125rem', fontWeight: '600', marginBottom: '1rem' }}>
-            Wishlist
-          </h3>
-          <p style={{ color: '#6b7280' }}>No items in wishlist</p>
-        </div>
-
-        <div style={{
-          backgroundColor: 'white',
-          padding: '1.5rem',
-          borderRadius: '8px',
-          boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)'
-        }}>
-          <h3 style={{ fontSize: '1.125rem', fontWeight: '600', marginBottom: '1rem' }}>
-            Account Settings
-          </h3>
-          <p style={{ color: '#6b7280', marginBottom: '1rem' }}>Manage your account preferences</p>
-          <Link 
-            href="/profile"
-            style={{
-              display: 'inline-block',
-              padding: '0.5rem 1rem',
-              backgroundColor: '#2563eb',
-              color: 'white',
-              textDecoration: 'none',
-              borderRadius: '6px',
-              fontWeight: '500'
-            }}
-          >
-            Edit Profile
-          </Link>
-        </div>
-      </div>
+      </main>
     </div>
   );
 }

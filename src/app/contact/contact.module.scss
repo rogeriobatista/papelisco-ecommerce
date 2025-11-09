@@ -1,0 +1,265 @@
+// Contact page styles
+
+.contactContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.hero {
+  text-align: center;
+  padding: 4rem 0;
+  background: linear-gradient(135deg, #6c7ce7 0%, #a6c0fe 100%);
+  color: #cdd6f4;
+  border-radius: 12px;
+  margin-bottom: 3rem;
+
+  h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    
+    @media (max-width: 768px) {
+      font-size: 2rem;
+    }
+  }
+}
+
+.heroSubtitle {
+  font-size: 1.25rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 0 auto;
+  
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
+}
+
+.content {
+  padding-bottom: 3rem;
+}
+
+.contactGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 4rem;
+
+  @media (max-width: 968px) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+.contactInfo {
+  h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #cdd6f4;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #bac2de;
+    margin-bottom: 2rem;
+  }
+}
+
+.contactMethods {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contactMethod {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: #313244;
+  border-radius: 8px;
+  border-left: 4px solid #89b4fa;
+
+  h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #cdd6f4;
+    margin: 0 0 0.25rem 0;
+  }
+
+  p {
+    color: #bac2de;
+    margin: 0 0 0.25rem 0;
+    font-weight: 500;
+  }
+
+  small {
+    color: #a6adc8;
+    font-size: 0.875rem;
+  }
+}
+
+.contactIcon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+}
+
+.contactForm {
+  background: #313244;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+
+  h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #cdd6f4;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+
+  label {
+    display: block;
+    font-weight: 500;
+    color: #bac2de;
+    margin-bottom: 0.5rem;
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #45475a;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #1e1e2e;
+    color: #cdd6f4;
+    transition: border-color 0.2s, box-shadow 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: #89b4fa;
+      box-shadow: 0 0 0 3px rgba(137, 180, 250, 0.2);
+    }
+
+    &:disabled {
+      background-color: #313244;
+      cursor: not-allowed;
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+}
+
+.submitButton {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #89b4fa 0%, #b4befe 100%);
+  color: #1e1e2e;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+.statusMessage {
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+
+  &.success {
+    background: #2d3a3a;
+    color: #a6e3a1;
+    border: 1px solid #40a02b;
+  }
+
+  &.error {
+    background: #3d2a2a;
+    color: #f38ba8;
+    border: 1px solid #d20f39;
+  }
+}
+
+.faqSection {
+  h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #cdd6f4;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+}
+
+.faqGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.faqItem {
+  background: #313244;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+
+  h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #cdd6f4;
+    margin-bottom: 0.75rem;
+  }
+
+  p {
+    color: #bac2de;
+    line-height: 1.6;
+    margin: 0;
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .contactContainer {
+    padding: 0 0.5rem;
+  }
+
+  .hero {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .contactForm {
+    padding: 1.5rem;
+  }
+
+  .contactMethod {
+    padding: 1rem;
+  }
+
+  .faqGrid {
+    grid-template-columns: 1fr;
+  }
+}

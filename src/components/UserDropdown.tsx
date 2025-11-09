@@ -67,9 +67,16 @@ export default function UserDropdown({ user, onLogout, isOpen, onToggle }: Props
           
           <div className={styles.divider}></div>
           
+          <Link href="/dashboard" className={styles.menuItem}>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M1 3h6v4H1V3zm8 0h6v2H9V3zm0 4h6v6H9V7zM1 9h6v6H1V9z"/>
+            </svg>
+            Dashboard
+          </Link>
+
           <Link href="/profile" className={styles.menuItem}>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-              <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 1c-2.5 0-4.5 1.5-4.5 3.5v1h9v-1c0-2-2-3.5-4.5-3.5z"/>
+              <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 1c-2.5 0-4.5 1.5-4.5 3.5v1h9v-1c0-2-3.5-4.5-3.5z"/>
             </svg>
             Profile
           </Link>
@@ -89,6 +96,16 @@ export default function UserDropdown({ user, onLogout, isOpen, onToggle }: Props
             </svg>
             Settings
           </Link>
+          
+          {user.role === 'ADMIN' && (
+            <Link href="/admin" className={`${styles.menuItem} ${styles.adminLink}`}>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                <path d="M8 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4zM4.5 7h7a1.5 1.5 0 0 1 1.5 1.5v4a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 12.5v-4A1.5 1.5 0 0 1 4.5 7z"/>
+                <path d="M7.5 9.5h1v3h-1v-3z"/>
+              </svg>
+              Admin Dashboard
+            </Link>
+          )}
           
           <div className={styles.divider}></div>
           

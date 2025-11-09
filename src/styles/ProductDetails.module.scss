@@ -50,15 +50,15 @@
 .productName {
   font-size: 2.5rem;
   font-weight: bold;
-  color: #222;
+  color: #cdd6f4;
   margin: 0;
   line-height: 1.2;
 }
 
 .categoryBadge {
   display: inline-block;
-  background: #1e90ff;
-  color: white;
+  background: #89b4fa;
+  color: #1e1e2e;
   padding: 0.5rem 1rem;
   border-radius: 20px;
   font-size: 0.9rem;
@@ -70,7 +70,7 @@
 .price {
   font-size: 2rem;
   font-weight: bold;
-  color: #1e90ff;
+  color: #89b4fa;
   margin: 0;
 }
 
@@ -78,11 +78,11 @@
 .productFeatures h3 {
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
-  color: #333;
+  color: #cdd6f4;
 }
 
 .description p {
-  color: #666;
+  color: #bac2de;
   line-height: 1.6;
   margin: 0;
 }
@@ -95,7 +95,7 @@
 
 .productFeatures li {
   padding: 0.5rem 0;
-  color: #666;
+  color: #bac2de;
   position: relative;
   padding-left: 1.5rem;
 }
@@ -104,12 +104,12 @@
   content: '✓';
   position: absolute;
   left: 0;
-  color: #1e90ff;
+  color: #89b4fa;
   font-weight: bold;
 }
 
 .purchaseSection {
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid #45475a;
   padding-top: 2rem;
   display: flex;
   flex-direction: column;
@@ -124,15 +124,16 @@
 
 .quantitySelector label {
   font-weight: 500;
-  color: #333;
+  color: #cdd6f4;
 }
 
 .quantitySelect {
   padding: 0.5rem 1rem;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #45475a;
   border-radius: 6px;
   font-size: 1rem;
-  background: white;
+  background: #313244;
+  color: #cdd6f4;
   cursor: pointer;
 }
 
@@ -156,28 +157,28 @@
 }
 
 .addToCartBtn {
-  background: #f0f0f0;
-  color: #333;
+  background: #45475a;
+  color: #cdd6f4;
 }
 
 .addToCartBtn:hover {
-  background: #e0e0e0;
+  background: #585b70;
 }
 
 .buyNowBtn {
-  background: #1e90ff;
-  color: white;
+  background: #89b4fa;
+  color: #1e1e2e;
 }
 
 .buyNowBtn:hover {
-  background: #0066cc;
+  background: #74c7ec;
 }
 
 .totalPrice {
   font-size: 1.5rem;
-  color: #333;
+  color: #cdd6f4;
   text-align: center;
   padding: 1rem;
-  background: #f9f9f9;
+  background: #313244;
   border-radius: 8px;
 }

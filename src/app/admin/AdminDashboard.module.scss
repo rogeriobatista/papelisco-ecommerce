@@ -1,0 +1,392 @@
+// Admin Dashboard Styles
+.adminDashboard {
+  min-height: 100vh;
+  background: var(--ctp-base);
+  color: var(--ctp-text);
+  padding: 0;
+}
+
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: var(--ctp-base);
+}
+
+.spinner {
+  color: var(--ctp-text);
+  font-size: 1.2rem;
+}
+
+.header {
+  background: var(--ctp-surface0);
+  border-bottom: 1px solid var(--ctp-surface1);
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  .headerContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--ctp-mauve);
+    margin: 0;
+  }
+
+  .userInfo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .welcomeText {
+    color: var(--ctp-subtext1);
+    font-weight: 500;
+  }
+
+  .logoutBtn {
+    background: var(--ctp-red);
+    color: var(--ctp-base);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: var(--ctp-maroon);
+      transform: translateY(-1px);
+    }
+  }
+}
+
+.dashboardContent {
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--ctp-lavender);
+  margin: 0 0 1rem 0;
+}
+
+// Key Metrics Section
+.metricsSection {
+  .metricsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .metricCard {
+    background: var(--ctp-surface0);
+    border: 1px solid var(--ctp-surface1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.2s ease;
+
+    &:hover {
+      border-color: var(--ctp-blue);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .metricIcon {
+      font-size: 2.5rem;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--ctp-blue), var(--ctp-sapphire));
+      border-radius: 12px;
+    }
+
+    .metricInfo {
+      flex: 1;
+
+      .metricValue {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: var(--ctp-text);
+        margin: 0 0 0.25rem 0;
+      }
+
+      .metricLabel {
+        color: var(--ctp-subtext1);
+        font-size: 0.9rem;
+        margin: 0;
+      }
+    }
+  }
+}
+
+// Sales Chart Section
+.chartSection {
+  background: var(--ctp-surface0);
+  border: 1px solid var(--ctp-surface1);
+  border-radius: 12px;
+  padding: 1.5rem;
+
+  .chartContainer {
+    margin-top: 1rem;
+  }
+
+  .simpleChart {
+    display: flex;
+    align-items: end;
+    gap: 1rem;
+    height: 200px;
+    padding: 1rem 0;
+  }
+
+  .chartBar {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    height: 100%;
+    position: relative;
+
+    .bar {
+      width: 100%;
+      max-width: 40px;
+      background: linear-gradient(180deg, var(--ctp-green), var(--ctp-teal));
+      border-radius: 4px 4px 0 0;
+      transition: all 0.3s ease;
+      min-height: 10px;
+
+      &:hover {
+        background: linear-gradient(180deg, var(--ctp-blue), var(--ctp-sapphire));
+      }
+    }
+
+    .chartLabel {
+      font-size: 0.8rem;
+      color: var(--ctp-subtext1);
+      font-weight: 500;
+    }
+
+    .chartValue {
+      font-size: 0.75rem;
+      color: var(--ctp-subtext0);
+      position: absolute;
+      top: -25px;
+      font-weight: 600;
+    }
+  }
+}
+
+// Bottom Section (Orders & Products)
+.bottomSection {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Recent Orders Section
+.ordersSection {
+  background: var(--ctp-surface0);
+  border: 1px solid var(--ctp-surface1);
+  border-radius: 12px;
+  padding: 1.5rem;
+
+  .ordersTable {
+    .tableHeader {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 0.8fr 0.8fr 1fr;
+      gap: 1rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--ctp-surface1);
+      font-weight: 600;
+      color: var(--ctp-subtext1);
+      font-size: 0.9rem;
+    }
+
+    .tableRow {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 0.8fr 0.8fr 1fr;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--ctp-surface1);
+      align-items: center;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background: var(--ctp-surface1);
+        border-radius: 6px;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .orderNumber {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.85rem;
+        color: var(--ctp-blue);
+        font-weight: 500;
+      }
+
+      .orderTotal {
+        font-weight: 600;
+        color: var(--ctp-green);
+      }
+
+      .status {
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        text-align: center;
+
+        &.delivered {
+          background: var(--ctp-green);
+          color: var(--ctp-base);
+        }
+
+        &.pending {
+          background: var(--ctp-yellow);
+          color: var(--ctp-base);
+        }
+
+        &.processing {
+          background: var(--ctp-blue);
+          color: var(--ctp-base);
+        }
+
+        &.cancelled {
+          background: var(--ctp-red);
+          color: var(--ctp-base);
+        }
+      }
+    }
+  }
+}
+
+// Top Products Section
+.productsSection {
+  background: var(--ctp-surface0);
+  border: 1px solid var(--ctp-surface1);
+  border-radius: 12px;
+  padding: 1.5rem;
+
+  .productsList {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .productItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: var(--ctp-surface1);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: var(--ctp-surface2);
+      transform: translateX(4px);
+    }
+
+    .productInfo {
+      flex: 1;
+
+      .productName {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--ctp-text);
+        margin: 0 0 0.25rem 0;
+      }
+
+      .productSales {
+        font-size: 0.8rem;
+        color: var(--ctp-subtext1);
+        margin: 0;
+      }
+    }
+
+    .productRevenue {
+      font-weight: 600;
+      color: var(--ctp-green);
+      font-size: 1rem;
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .adminDashboard {
+    .header {
+      padding: 1rem;
+
+      .headerContent {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+      }
+
+      .title {
+        font-size: 1.5rem;
+      }
+    }
+
+    .dashboardContent {
+      padding: 1rem;
+      gap: 1.5rem;
+    }
+
+    .metricsSection {
+      .metricsGrid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .ordersSection {
+      .ordersTable {
+        .tableHeader,
+        .tableRow {
+          grid-template-columns: 1fr;
+          gap: 0.5rem;
+          text-align: left;
+        }
+
+        .tableRow {
+          padding: 0.75rem;
+          
+          > span {
+            padding: 0.25rem 0;
+          }
+        }
+      }
+    }
+  }
+}

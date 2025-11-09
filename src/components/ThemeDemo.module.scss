@@ -1,0 +1,230 @@
+.themeDemo {
+  padding: 2rem;
+  min-height: 100vh;
+  background-color: var(--ctp-base);
+  color: var(--ctp-text);
+
+  .card {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--ctp-surface0);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+
+    h2 {
+      color: var(--ctp-text);
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    p {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: var(--ctp-subtext1);
+    }
+  }
+
+  .toggleBtn {
+    display: block;
+    margin: 0 auto 3rem;
+    padding: 12px 24px;
+    background-color: var(--ctp-blue);
+    color: var(--ctp-base);
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: var(--ctp-sapphire);
+      transform: translateY(-2px);
+    }
+  }
+
+  .colorPalette {
+    margin-bottom: 3rem;
+
+    h3 {
+      color: var(--ctp-text);
+      margin-bottom: 1rem;
+    }
+
+    .colorGrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 1rem;
+    }
+
+    .colorSwatch {
+      height: 80px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ctp-text);
+      font-weight: 600;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+
+      &.base {
+        background-color: var(--ctp-base);
+        border: 2px solid var(--ctp-surface1);
+      }
+
+      &.surface0 {
+        background-color: var(--ctp-surface0);
+      }
+
+      &.surface1 {
+        background-color: var(--ctp-surface1);
+      }
+
+      &.text {
+        background-color: var(--ctp-text);
+        color: var(--ctp-base);
+      }
+
+      &.blue {
+        background-color: var(--ctp-blue);
+        color: var(--ctp-base);
+      }
+
+      &.green {
+        background-color: var(--ctp-green);
+        color: var(--ctp-base);
+      }
+
+      &.red {
+        background-color: var(--ctp-red);
+        color: var(--ctp-base);
+      }
+
+      &.mauve {
+        background-color: var(--ctp-mauve);
+        color: var(--ctp-base);
+      }
+    }
+  }
+
+  .componentPreview {
+    h3 {
+      color: var(--ctp-text);
+      margin-bottom: 2rem;
+    }
+
+    .previewSection {
+      margin-bottom: 2rem;
+
+      h4 {
+        color: var(--ctp-subtext0);
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+      }
+    }
+
+    .buttonGroup {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+
+      .primaryBtn {
+        padding: 10px 20px;
+        background-color: var(--ctp-blue);
+        color: var(--ctp-base);
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: var(--ctp-sapphire);
+        }
+      }
+
+      .secondaryBtn {
+        padding: 10px 20px;
+        background-color: transparent;
+        color: var(--ctp-text);
+        border: 2px solid var(--ctp-surface2);
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background-color: var(--ctp-surface1);
+          border-color: var(--ctp-blue);
+        }
+      }
+
+      .dangerBtn {
+        padding: 10px 20px;
+        background-color: var(--ctp-red);
+        color: var(--ctp-base);
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: var(--ctp-maroon);
+        }
+      }
+    }
+
+    .formGroup {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+
+      .textInput, .selectInput {
+        padding: 10px 15px;
+        background-color: var(--ctp-surface1);
+        color: var(--ctp-text);
+        border: 2px solid var(--ctp-surface2);
+        border-radius: 6px;
+        font-size: 1rem;
+        min-width: 200px;
+        transition: border-color 0.3s ease;
+
+        &:focus {
+          outline: none;
+          border-color: var(--ctp-blue);
+        }
+
+        &::placeholder {
+          color: var(--ctp-subtext0);
+        }
+      }
+
+      .selectInput {
+        cursor: pointer;
+
+        option {
+          background-color: var(--ctp-surface1);
+          color: var(--ctp-text);
+        }
+      }
+    }
+
+    .sampleCard {
+      background-color: var(--ctp-surface1);
+      padding: 1.5rem;
+      border-radius: 8px;
+      border: 1px solid var(--ctp-surface2);
+      max-width: 300px;
+
+      h5 {
+        color: var(--ctp-text);
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        color: var(--ctp-subtext1);
+        margin: 0;
+        text-align: left;
+      }
+    }
+  }
+}

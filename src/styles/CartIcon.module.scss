@@ -12,25 +12,25 @@
 }
 
 .cartButton:hover {
-  background: #f5f5f5;
+  background: var(--ctp-surface1);
   transform: scale(1.05);
 }
 
 .cartIcon {
-  color: #666;
+  color: var(--ctp-text);
   transition: color 0.2s;
 }
 
 .cartButton:hover .cartIcon {
-  color: #1e90ff;
+  color: var(--ctp-blue);
 }
 
 .badge {
   position: absolute;
   top: 0;
   right: 0;
-  background: #dc3545;
-  color: white;
+  background: var(--ctp-red);
+  color: var(--ctp-base);
   border-radius: 50%;
   width: 20px;
   height: 20px;
@@ -40,8 +40,8 @@
   font-size: 0.7rem;
   font-weight: bold;
   transform: translate(25%, -25%);
-  border: 2px solid white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border: 2px solid var(--ctp-base);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
   animation: bounceIn 0.3s ease-out;
 }
 
