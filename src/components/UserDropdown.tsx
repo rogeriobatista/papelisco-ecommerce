@@ -35,15 +35,19 @@ export default function UserDropdown({ user, onLogout, isOpen, onToggle }: Props
     <div className={styles.userDropdown} ref={dropdownRef}>
       <button className={styles.userButton} onClick={onToggle}>
         <div className={styles.userAvatar}>
-          {user.avatar ? (
-            <img src={user.avatar} alt={user.name} />
+          {user.image ? (
+            <img src={user.image} alt={user.firstName || user.email} />
           ) : (
             <span className={styles.avatarInitial}>
-              {user.name.charAt(0).toUpperCase()}
+              {(user.firstName || user.email).charAt(0).toUpperCase()}
             </span>
           )}
         </div>
-        <span className={styles.userName}>{user.name}</span>
+        <span className={styles.userName}>
+          {user.firstName && user.lastName 
+            ? `${user.firstName} ${user.lastName}` 
+            : user.firstName || user.email}
+        </span>
         <svg 
           className={`${styles.chevron} ${isOpen ? styles.chevronOpen : ''}`}
           width="12" 

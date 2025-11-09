@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { useAppDispatch, useAppSelector } from '../features/hooks';
-import { login, logout } from '../features/auth/authSlice';
+import { useAppDispatch, useAppSelector } from '../app/hooks';
+import { logout } from '../features/auth/authSlice';
 import { toggleCart } from '../features/cart/cartSlice';
 import UserDropdown from './UserDropdown';
 import CartIcon from './CartIcon';
@@ -14,20 +14,17 @@ export default function Header() {
   const { user, isLoggedIn } = useAppSelector((state: any) => state.auth);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const handleLogin = () => {
-    // Mock login - in a real app, this would redirect to login page or open modal
-    const mockUser = {
-      id: '1',
-      name: 'John Doe',
-      email: 'john@example.com',
-      avatar: '/images/user-avatar.svg'
-    };
-    dispatch(login(mockUser));
-  };
-
-  const handleLogout = () => {
-    dispatch(logout());
-    setIsMenuOpen(false);
+  const handleLogout = async () => {
+    try {
+      await fetch('/api/auth/logout', {
+        method: 'POST',
+        credentials: 'include',
+      });
+      dispatch(logout());
+      setIsMenuOpen(false);
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
   };
 
   return (
@@ -67,17 +64,18 @@ export default function Header() {
             />
           ) : (
             <div className={styles.authButtons}>
-              <button 
-                onClick={handleLogin} 
+              <Link 
+                href="/auth/login"
                 className={styles.loginBtn}
               >
-                Login
-              </button>
-              <button 
+                Sign In
+              </Link>
+              <Link 
+                href="/auth/register"
                 className={styles.signupBtn}
               >
                 Sign Up
-              </button>
+              </Link>
             </div>
           )}
         </div>
@@ -110,12 +108,12 @@ export default function Header() {
           </Link>
           {!isLoggedIn && (
             <div className={styles.mobileAuthButtons}>
-              <button onClick={handleLogin} className={styles.mobileLoginBtn}>
+              <Link href="/auth/login" className={styles.mobileLoginBtn}>
                 Login
-              </button>
-              <button className={styles.mobileSignupBtn}>
+              </Link>
+              <Link href="/auth/register" className={styles.mobileSignupBtn}>
                 Sign Up
-              </button>
+              </Link>
             </div>
           )}
         </div>
