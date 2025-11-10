@@ -37,19 +37,6 @@ export default function DashboardPage() {
     }
   }, [isLoggedIn, dispatch, router]);
 
-  const handleLogout = async () => {
-    try {
-      await fetch('/api/auth/logout', {
-        method: 'POST',
-        credentials: 'include',
-      });
-      dispatch(logout());
-      router.push('/auth/login');
-    } catch (error) {
-      console.error('Logout failed:', error);
-    }
-  };
-
   if (isLoading || !isLoggedIn) {
     return (
       <div className={styles.loadingContainer}>
@@ -60,37 +47,6 @@ export default function DashboardPage() {
 
   return (
     <div className={styles.dashboardPage}>
-      {/* Dashboard Header */}
-      <header className={styles.dashboardHeader}>
-        <div className={styles.headerContent}>
-          <Link href="/" className={styles.logo}>
-            <img 
-              src="/icon-logo.png" 
-              alt="Papelisco" 
-              className={styles.logoImage}
-            />
-          </Link>
-          
-          <nav className={styles.headerNav}>
-            <Link href="/" className={styles.navLink}>
-              Back to Store
-            </Link>
-            {user?.role === 'ADMIN' && (
-              <Link href="/admin" className={styles.adminLink}>
-                Admin Dashboard
-              </Link>
-            )}
-          </nav>
-
-          <div className={styles.userSection}>
-            <span className={styles.welcomeText}>Welcome, {user?.firstName}!</span>
-            <button onClick={handleLogout} className={styles.logoutBtn}>
-              Logout
-            </button>
-          </div>
-        </div>
-      </header>
-
       {/* Dashboard Content */}
       <main className={styles.dashboardContent}>
         <div className={styles.container}>

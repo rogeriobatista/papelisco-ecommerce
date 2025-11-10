@@ -52,19 +52,6 @@ export default function SettingsPage() {
     }
   }, [isLoggedIn, dispatch, router]);
 
-  const handleLogout = async () => {
-    try {
-      await fetch('/api/auth/logout', {
-        method: 'POST',
-        credentials: 'include',
-      });
-      dispatch(logout());
-      router.push('/auth/login');
-    } catch (error) {
-      console.error('Logout failed:', error);
-    }
-  };
-
   const handlePreferenceChange = (key: string, value: boolean | string) => {
     setPreferences(prev => ({
       ...prev,
@@ -94,7 +81,13 @@ export default function SettingsPage() {
         try {
           // In a real app, you'd call the delete account API
           await new Promise(resolve => setTimeout(resolve, 1000));
-          await handleLogout();
+          // Logout and redirect to home
+          await fetch('/api/auth/logout', {
+            method: 'POST',
+            credentials: 'include',
+          });
+          dispatch(logout());
+          router.push('/auth/login');
         } catch (error) {
           setMessage('Failed to delete account. Please try again.');
           setLoading(false);
@@ -113,38 +106,6 @@ export default function SettingsPage() {
 
   return (
     <div className={styles.settingsPage}>
-      {/* Settings Header */}
-      <header className={styles.settingsHeader}>
-        <div className={styles.headerContent}>
-          <Link href="/" className={styles.logo}>
-            <img 
-              src="/icon-logo.png" 
-              alt="Papelisco" 
-              className={styles.logoImage}
-            />
-          </Link>
-          
-          <nav className={styles.headerNav}>
-            <Link href="/" className={styles.navLink}>
-              Back to Store
-            </Link>
-            <Link href="/dashboard" className={styles.navLink}>
-              Dashboard
-            </Link>
-            <Link href="/profile" className={styles.navLink}>
-              Profile
-            </Link>
-          </nav>
-
-          <div className={styles.userSection}>
-            <span className={styles.welcomeText}>Settings</span>
-            <button onClick={handleLogout} className={styles.logoutBtn}>
-              Logout
-            </button>
-          </div>
-        </div>
-      </header>
-
       {/* Settings Content */}
       <main className={styles.settingsContent}>
         <div className={styles.container}>

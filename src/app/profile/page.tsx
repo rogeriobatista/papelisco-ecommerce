@@ -67,19 +67,6 @@ export default function ProfilePage() {
     }
   }, [isLoggedIn, user, dispatch, router]);
 
-  const handleLogout = async () => {
-    try {
-      await fetch('/api/auth/logout', {
-        method: 'POST',
-        credentials: 'include',
-      });
-      dispatch(logout());
-      router.push('/auth/login');
-    } catch (error) {
-      console.error('Logout failed:', error);
-    }
-  };
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -140,38 +127,6 @@ export default function ProfilePage() {
 
   return (
     <div className={styles.profilePage}>
-      {/* Profile Header */}
-      <header className={styles.profileHeader}>
-        <div className={styles.headerContent}>
-          <Link href="/" className={styles.logo}>
-            <img 
-              src="/icon-logo.png" 
-              alt="Papelisco" 
-              className={styles.logoImage}
-            />
-          </Link>
-          
-          <nav className={styles.headerNav}>
-            <Link href="/" className={styles.navLink}>
-              Back to Store
-            </Link>
-            <Link href="/dashboard" className={styles.navLink}>
-              Dashboard
-            </Link>
-            <Link href="/settings" className={styles.navLink}>
-              Settings
-            </Link>
-          </nav>
-
-          <div className={styles.userSection}>
-            <span className={styles.welcomeText}>Profile</span>
-            <button onClick={handleLogout} className={styles.logoutBtn}>
-              Logout
-            </button>
-          </div>
-        </div>
-      </header>
-
       {/* Profile Content */}
       <main className={styles.profileContent}>
         <div className={styles.container}>
@@ -405,14 +360,6 @@ export default function ProfilePage() {
                   </svg>
                   <span>Dashboard</span>
                 </Link>
-
-                <button className={styles.actionButton} onClick={handleLogout}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.59L17 17l5-5z"/>
-                    <path d="M4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/>
-                  </svg>
-                  <span>Sign Out</span>
-                </button>
               </div>
             </div>
           </div>

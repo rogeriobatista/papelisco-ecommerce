@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../styles/globals.scss";
+import "../styles/layouts.scss";
 import { Providers } from './providers';
 import { ToastProvider } from '../contexts/ToastContext';
 import { ThemeProvider } from '../contexts/ThemeContext';
-import Header from '../components/Header';
+import ConditionalLayout from '../components/ConditionalLayout';
 import Footer from '../components/Footer';
 import CartDrawer from '../components/CartDrawer';
 
@@ -45,10 +46,9 @@ export default function RootLayout({
           <Providers>
             <ToastProvider>
               <div className="app-layout">
-                <Header />
-                <main className="main-content">
+                <ConditionalLayout>
                   {children}
-                </main>
+                </ConditionalLayout>
                 <Footer />
                 <CartDrawer />
               </div>
