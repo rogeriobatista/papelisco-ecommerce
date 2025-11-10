@@ -4,16 +4,17 @@ import { prisma } from '@/lib/prisma';
 
 export async function GET(request: NextRequest) {
   try {
-    const token = request.cookies.get('auth-token')?.value;
+    const authHeader = request.headers.get('authorization');
     
-    if (!token) {
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
       return NextResponse.json(
         { error: 'No token provided' },
         { status: 401 }
       );
     }
 
-    const decoded = await verifyToken(token);
+    const token = authHeader.replace('Bearer ', '');
+    const decoded = verifyToken(token);
     if (!decoded || typeof decoded === 'string') {
       return NextResponse.json(
         { error: 'Invalid token' },

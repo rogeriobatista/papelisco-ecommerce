@@ -1,15 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { cookies } from 'next/headers';
 import { prisma } from '@/lib/prisma';
 import { verifyToken } from '@/lib/auth';
 
 export async function POST(request: NextRequest) {
   try {
-    // Get token from cookie
-    const cookieStore = cookies();
-    const token = (await cookieStore).get('auth-token')?.value;
-
-    if (token) {
+    // Get token from Authorization header
+    const authHeader = request.headers.get('authorization');
+    
+    if (authHeader && authHeader.startsWith('Bearer ')) {
+      const token = authHeader.replace('Bearer ', '');
+      
       // Verify and decode token
       const payload = verifyToken(token);
       
@@ -24,21 +24,11 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // Create response
-    const response = NextResponse.json(
+    // Return success response (client will remove token from localStorage)
+    return NextResponse.json(
       { message: 'Logout successful' },
       { status: 200 }
     );
-
-    // Clear auth cookie
-    response.cookies.set('auth-token', '', {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
-      maxAge: 0, // Immediately expire
-    });
-
-    return response;
 
   } catch (error) {
     console.error('Logout error:', error);

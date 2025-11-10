@@ -6,6 +6,7 @@ import { useAppDispatch } from '../features/hooks';
 import { addToCart } from '../features/cart/cartSlice';
 import { Product } from '../features/products/productsSlice';
 import { useToast } from '../contexts/ToastContext';
+import WishlistButton from './WishlistButton';
 import styles from '../styles/ProductCard.module.scss';
 
 export default function ProductCard({ product }: { product: Product }) {
@@ -31,6 +32,13 @@ export default function ProductCard({ product }: { product: Product }) {
 
   return (
     <div className={styles.cardWrapper}>
+      <div className={styles.wishlistButtonContainer}>
+        <WishlistButton 
+          productId={product.id} 
+          variant="icon-only"
+          className={styles.cardWishlistButton}
+        />
+      </div>
       <Link href={`/product/${product.id}`} className={styles.cardLink}>
         <div className={styles.card}>
           <img src={product.image} alt={product.name} className={styles.image} />

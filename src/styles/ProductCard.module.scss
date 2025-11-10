@@ -95,6 +95,28 @@
   }
 }
 
+.wishlistButtonContainer {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 2;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.2s;
+}
+
+.cardWishlistButton {
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: var(--ctp-red) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(10px);
+  
+  &:hover {
+    background: var(--ctp-red) !important;
+    color: white !important;
+  }
+}
+
 .spinner {
   animation: spin 1s linear infinite;
 }
@@ -108,13 +130,15 @@
   }
 }
 
-.cardWrapper:hover .addToCartBtn {
+.cardWrapper:hover .addToCartBtn,
+.cardWrapper:hover .wishlistButtonContainer {
   opacity: 1;
   transform: scale(1);
 }
 
 @media (max-width: 768px) {
-  .addToCartBtn {
+  .addToCartBtn,
+  .wishlistButtonContainer {
     opacity: 1;
     transform: scale(1);
   }

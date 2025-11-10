@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { logout } from '../features/auth/authSlice';
 import { toggleCart } from '../features/cart/cartSlice';
+import { authenticatedFetch, tokenStorage } from '../lib/authStorage';
 import UserDropdown from './UserDropdown';
 import CartIcon from './CartIcon';
 import ThemeSwitcher from './ThemeSwitcher';
@@ -17,14 +18,18 @@ export default function Header() {
 
   const handleLogout = async () => {
     try {
-      await fetch('/api/auth/logout', {
+      await authenticatedFetch('/api/auth/logout', {
         method: 'POST',
-        credentials: 'include',
       });
+      // Remove token from localStorage
+      tokenStorage.removeToken();
       dispatch(logout());
       setIsMenuOpen(false);
     } catch (error) {
       console.error('Logout failed:', error);
+      // Even if the API call fails, remove the token locally
+      tokenStorage.removeToken();
+      dispatch(logout());
     }
   };
 
@@ -56,6 +61,13 @@ export default function Header() {
         {/* User Section */}
         <div className={styles.userSection}>
           <ThemeSwitcher />
+          {isLoggedIn && (
+            <Link href="/wishlist" className={styles.wishlistIcon} title="Wishlist">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+              </svg>
+            </Link>
+          )}
           <CartIcon />
           {isLoggedIn ? (
             <UserDropdown 

@@ -141,6 +141,7 @@
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+  align-items: stretch;
 }
 
 .addToCartBtn,
@@ -154,6 +155,24 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
+}
+
+.wishlistBtn {
+  flex: 0 0 auto;
+  min-width: auto;
+  padding: 1rem !important;
+  background: transparent !important;
+  border: 2px solid #f38ba8 !important;
+  color: #f38ba8 !important;
+  border-radius: 8px !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  transition: all 0.2s !important;
+  
+  &:hover {
+    background: #f38ba8 !important;
+    color: #1e1e2e !important;
+  }
 }
 
 .addToCartBtn {

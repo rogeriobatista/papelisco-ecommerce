@@ -6,6 +6,7 @@ import { Product } from '../features/products/productsSlice';
 import { useAppDispatch } from '../features/hooks';
 import { addToCart, openCart } from '../features/cart/cartSlice';
 import RelatedProducts from './RelatedProducts';
+import WishlistButton from './WishlistButton';
 import styles from '../styles/ProductDetails.module.scss';
 
 type Props = {
@@ -136,6 +137,11 @@ export default function ProductDetails({ product }: Props) {
             >
               {isAddingToCart ? 'Adding...' : 'Add to Cart'}
             </button>
+            <WishlistButton 
+              productId={product.id} 
+              variant="large"
+              className={styles.wishlistBtn}
+            />
             <button 
               onClick={handleBuyNow} 
               className={styles.buyNowBtn}

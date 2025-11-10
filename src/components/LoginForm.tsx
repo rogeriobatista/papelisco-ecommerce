@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useAppDispatch } from '@/features/hooks';
 import { setUser } from '@/features/auth/authSlice';
+import { tokenStorage } from '@/lib/authStorage';
 import styles from '@/styles/AuthForm.module.scss';
 
 interface LoginFormData {
@@ -52,12 +53,16 @@ export default function LoginForm() {
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify(formData),
       });
 
       const data = await response.json();
 
       if (response.ok) {
+        // Store JWT token in localStorage
+        tokenStorage.setToken(data.token);
+        
         // Set user in Redux store
         dispatch(setUser(data.user));
         

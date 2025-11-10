@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useAppSelector, useAppDispatch } from '@/app/hooks';
 import { logout } from '@/features/auth/authSlice';
+import { authenticatedFetch, tokenStorage } from '@/lib/authStorage';
 
 export default function InternalHeader() {
   const router = useRouter();
@@ -12,14 +13,19 @@ export default function InternalHeader() {
 
   const handleLogout = async () => {
     try {
-      await fetch('/api/auth/logout', {
+      await authenticatedFetch('/api/auth/logout', {
         method: 'POST',
-        credentials: 'include',
       });
+      // Remove token from localStorage
+      tokenStorage.removeToken();
       dispatch(logout());
       router.push('/auth/login');
     } catch (error) {
       console.error('Logout error:', error);
+      // Even if the API call fails, remove the token locally
+      tokenStorage.removeToken();
+      dispatch(logout());
+      router.push('/auth/login');
     }
   };
 
@@ -64,6 +70,9 @@ export default function InternalHeader() {
         </Link>
         <Link href="/orders" style={{ color: 'var(--ctp-subtext1)', textDecoration: 'none' }}>
           My Orders
+        </Link>
+        <Link href="/wishlist" style={{ color: 'var(--ctp-subtext1)', textDecoration: 'none' }}>
+          Wishlist
         </Link>
         <Link href="/profile" style={{ color: 'var(--ctp-subtext1)', textDecoration: 'none' }}>
           Profile

@@ -8,7 +8,7 @@ import '@/styles/layouts.scss';
 export default function ConditionalLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
-  const isInternalRoute = pathname && ['/dashboard', '/profile', '/settings', '/orders'].some(route => 
+  const isInternalRoute = pathname && ['/dashboard', '/profile', '/settings', '/orders', '/wishlist'].some(route => 
     pathname.startsWith(route)
   );
 

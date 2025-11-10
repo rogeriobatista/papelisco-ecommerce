@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAppDispatch } from '@/features/hooks';
 import { setUser } from '@/features/auth/authSlice';
+import { tokenStorage } from '@/lib/authStorage';
 import Link from 'next/link';
 import styles from '@/styles/AuthForm.module.scss';
 
@@ -95,6 +96,7 @@ export default function RegisterForm() {
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify({
           email: formData.email,
           password: formData.password,
@@ -107,6 +109,9 @@ export default function RegisterForm() {
       const data = await response.json();
 
       if (response.ok) {
+        // Store JWT token in localStorage
+        tokenStorage.setToken(data.token);
+        
         // Registration successful, user is now logged in
         dispatch(setUser(data.user));
         

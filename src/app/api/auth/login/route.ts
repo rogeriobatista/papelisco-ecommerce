@@ -76,8 +76,8 @@ export async function POST(request: NextRequest) {
       createdAt: user.createdAt,
     };
 
-    // Set HTTP-only cookie
-    const response = NextResponse.json(
+    // Return response with token (no cookies)
+    return NextResponse.json(
       { 
         message: 'Login successful',
         user: userData,
@@ -85,16 +85,6 @@ export async function POST(request: NextRequest) {
       },
       { status: 200 }
     );
-
-    response.cookies.set('auth-token', token, {
-      httpOnly: true,
-      secure: false, // Always false for development
-      sameSite: 'lax',
-      path: '/',
-      maxAge: remember ? 30 * 24 * 60 * 60 : 7 * 24 * 60 * 60, // 30 days or 7 days in seconds
-    });
-
-    return response;
 
   } catch (error) {
     console.error('Login error:', error);

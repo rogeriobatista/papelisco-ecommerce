@@ -13,13 +13,6 @@ const protectedRoutes = [
   '/profile',
   '/settings',
   '/orders',
-  '/admin',
-  '/dashboard'
-];
-
-// List of admin-only routes
-const adminRoutes = [
-  '/admin',
   '/dashboard'
 ];
 
