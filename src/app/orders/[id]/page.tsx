@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useAppSelector, useAppDispatch } from '@/app/hooks';
 import { logout, setUser } from '@/features/auth/authSlice';
@@ -45,12 +45,28 @@ interface Order {
 
 export default function OrderDetailPage({ params }: { params: { id: string } }) {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const dispatch = useAppDispatch();
   const { user, isLoggedIn, isLoading } = useAppSelector((state) => state.auth);
   
   const [order, setOrder] = useState<Order | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+
+  // Check for success parameter
+  useEffect(() => {
+    const success = searchParams.get('success');
+    if (success === 'true') {
+      setShowSuccessMessage(true);
+      // Hide success message after 5 seconds
+      const timer = setTimeout(() => {
+        setShowSuccessMessage(false);
+      }, 5000);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     // Check if user is authenticated
@@ -198,6 +214,25 @@ export default function OrderDetailPage({ params }: { params: { id: string } }) 
 
   return (
     <div className={styles.orderDetailPage}>
+      {/* Success Message */}
+      {showSuccessMessage && (
+        <div className={styles.successBanner}>
+          <div className={styles.successContent}>
+            <div className={styles.successIcon}>✅</div>
+            <div className={styles.successText}>
+              <h3>Order Placed Successfully!</h3>
+              <p>Thank you for your purchase. Your order has been placed and will be processed soon.</p>
+            </div>
+            <button 
+              className={styles.closeSuccessBtn}
+              onClick={() => setShowSuccessMessage(false)}
+            >
+              ×
+            </button>
+          </div>
+        </div>
+      )}
+      
       {/* Header */}
       <header className={styles.orderHeader}>
         <div className={styles.headerContent}>

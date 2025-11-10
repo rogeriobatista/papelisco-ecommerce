@@ -3,6 +3,96 @@
   min-height: 100vh;
   background: var(--ctp-base);
   color: var(--ctp-text);
+
+  /* Add padding when success banner is shown */
+  &:has(.successBanner) {
+    padding-top: 80px;
+
+    @media (max-width: 768px) {
+      padding-top: 120px;
+    }
+  }
+}
+
+/* Success Banner */
+.successBanner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  animation: slideDown 0.3s ease-out;
+
+  @keyframes slideDown {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+}
+
+.successContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.successIcon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.successText {
+  flex: 1;
+
+  h3 {
+    margin: 0 0 0.25rem 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.95rem;
+    opacity: 0.9;
+  }
+}
+
+.closeSuccessBtn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  flex-shrink: 0;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  @media (max-width: 768px) {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+  }
 }
 
 .loadingContainer, .errorContainer {
