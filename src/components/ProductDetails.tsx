@@ -16,25 +16,29 @@ type Props = {
 export default function ProductDetails({ product }: Props) {
   const [quantity, setQuantity] = useState(1);
   const [isAddingToCart, setIsAddingToCart] = useState(false);
-  const [allProducts, setAllProducts] = useState<Product[]>([]);
+  const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
+  const [loadingRelated, setLoadingRelated] = useState(true);
   const dispatch = useAppDispatch();
   const router = useRouter();
 
   useEffect(() => {
-    const fetchAllProducts = async () => {
+    const fetchRelatedProducts = async () => {
       try {
-        const response = await fetch('/api/products');
+        setLoadingRelated(true);
+        const response = await fetch(`/api/products/${product.id}/related`);
         if (response.ok) {
           const data = await response.json();
-          setAllProducts(data.products || []);
+          setRelatedProducts(data.relatedProducts || []);
         }
       } catch (error) {
-        console.error('Error fetching products for related products:', error);
+        console.error('Error fetching related products:', error);
+      } finally {
+        setLoadingRelated(false);
       }
     };
 
-    fetchAllProducts();
-  }, []);
+    fetchRelatedProducts();
+  }, [product.id]);
 
   const handleAddToCart = async () => {
     setIsAddingToCart(true);
@@ -194,7 +198,11 @@ export default function ProductDetails({ product }: Props) {
       </div>
       
       <div className={styles.relatedProductsSection}>
-        <RelatedProducts currentProduct={product} allProducts={allProducts} />
+        <RelatedProducts 
+          currentProduct={product} 
+          relatedProducts={relatedProducts}
+          loading={loadingRelated}
+        />
       </div>
     </div>
   );

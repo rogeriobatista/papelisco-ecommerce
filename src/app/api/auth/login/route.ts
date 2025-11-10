@@ -44,6 +44,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Check if user is verified
+    if (!user.isVerified) {
+      return NextResponse.json(
+        { error: 'Please verify your email before logging in' },
+        { status: 403 }
+      );
+    }
+
     // Generate JWT token
     const token = generateToken({
       userId: user.id,
@@ -61,6 +69,12 @@ export async function POST(request: NextRequest) {
         userId: user.id,
         expires: sessionExpires,
       }
+    });
+
+    // Update last login time
+    await prisma.user.update({
+      where: { id: user.id },
+      data: { lastLoginAt: new Date() },
     });
 
     // Return user data (without password)

@@ -234,3 +234,12 @@
   background: #313244;
   border-radius: 8px;
 }
+
+.relatedProductsSection {
+  grid-area: related;
+  margin-top: 2rem;
+  
+  @media (max-width: 768px) {
+    margin-top: 1rem;
+  }
+}

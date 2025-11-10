@@ -50,6 +50,7 @@ model User {
   dateOfBirth   DateTime?
   isVerified    Boolean   @default(false)
   role          UserRole  @default(CUSTOMER)
+  lastLoginAt   DateTime?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 

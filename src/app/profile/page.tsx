@@ -3,8 +3,9 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { useAppSelector, useAppDispatch } from '@/app/hooks';
-import { logout, setUser } from '@/features/auth/authSlice';
+import { useAppSelector, useAppDispatch } from '../../features/hooks';
+import { logout, setUser } from '../../features/auth/authSlice';
+import { tokenStorage } from '../../lib/authStorage';
 import styles from './Profile.module.scss';
 
 interface ProfileFormData {
@@ -33,8 +34,16 @@ export default function ProfilePage() {
     // Check if user is authenticated
     const checkAuth = async () => {
       try {
+        const token = tokenStorage.getToken();
+        if (!token) {
+          router.push('/auth/login');
+          return;
+        }
+
         const response = await fetch('/api/auth/me', {
-          credentials: 'include',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          },
         });
 
         if (response.ok) {
@@ -47,10 +56,12 @@ export default function ProfilePage() {
             email: userData.email || '',
           });
         } else {
+          tokenStorage.removeToken();
           router.push('/auth/login');
         }
       } catch (error) {
         console.error('Auth check failed:', error);
+        tokenStorage.removeToken();
         router.push('/auth/login');
       }
     };
@@ -89,12 +100,19 @@ export default function ProfilePage() {
     setMessage(null);
 
     try {
+      const token = tokenStorage.getToken();
+      if (!token) {
+        setMessage({ type: 'error', text: 'Authentication required. Please log in again.' });
+        router.push('/auth/login');
+        return;
+      }
+
       const response = await fetch('/api/auth/profile', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
-        credentials: 'include',
         body: JSON.stringify({
           firstName: formData.firstName,
           lastName: formData.lastName,

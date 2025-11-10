@@ -5,12 +5,18 @@ import { hashPassword, isValidEmail, isValidPassword, generateToken } from '@/li
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { email, password, firstName, lastName, phone } = body;
+    let { email, password, firstName, lastName, phone } = body;
+
+    // Trim whitespace from input fields
+    email = email?.trim();
+    firstName = firstName?.trim();
+    lastName = lastName?.trim();
+    phone = phone?.trim();
 
     // Validation
-    if (!email || !password) {
+    if (!email || !password || !firstName || !lastName) {
       return NextResponse.json(
-        { error: 'Email and password are required' },
+        { error: 'Email, password, firstName, and lastName are required' },
         { status: 400 }
       );
     }
