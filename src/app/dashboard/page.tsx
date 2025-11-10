@@ -173,13 +173,25 @@ export default function DashboardPage() {
             </div>
 
             <div className={styles.dashboardCard}>
+              <div className={styles.cardIcon}>👤</div>
+              <div className={styles.cardContent}>
+                <h3 className={styles.cardTitle}>My Profile</h3>
+                <p className={styles.cardDescription}>Manage your personal information</p>
+                <div className={styles.cardStats}>Name, Email, Phone</div>
+                <Link href="/profile" className={styles.cardAction}>
+                  Edit Profile
+                </Link>
+              </div>
+            </div>
+
+            <div className={styles.dashboardCard}>
               <div className={styles.cardIcon}>⚙️</div>
               <div className={styles.cardContent}>
                 <h3 className={styles.cardTitle}>Account Settings</h3>
                 <p className={styles.cardDescription}>Manage your account preferences</p>
-                <div className={styles.cardStats}>Profile, Security, Preferences</div>
-                <Link href="/profile" className={styles.cardAction}>
-                  Edit Profile
+                <div className={styles.cardStats}>Theme, Security, Preferences</div>
+                <Link href="/settings" className={styles.cardAction}>
+                  Open Settings
                 </Link>
               </div>
             </div>

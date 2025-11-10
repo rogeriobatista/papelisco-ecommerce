@@ -103,6 +103,33 @@
   .pageHeader {
     margin-bottom: 2rem;
 
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+
+      .breadcrumbLink {
+        color: var(--ctp-blue);
+        text-decoration: none;
+        transition: color 0.2s ease;
+
+        &:hover {
+          color: var(--ctp-sapphire);
+        }
+      }
+
+      .breadcrumbSeparator {
+        color: var(--ctp-subtext0);
+      }
+
+      .breadcrumbCurrent {
+        color: var(--ctp-text);
+        font-weight: 500;
+      }
+    }
+
     .pageTitle {
       font-size: 2rem;
       font-weight: 700;
@@ -121,11 +148,42 @@
 // Profile Layout
 .profileLayout {
   display: grid;
-  grid-template-columns: 350px 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto;
   gap: 2rem;
+
+  .userCard {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .formCard {
+    grid-column: 2;
+    grid-row: 1 / 3;
+  }
+
+  .statsCard {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .actionsCard {
+    grid-column: 1 / 3;
+    grid-row: 3;
+  }
 
   @media (max-width: 1024px) {
     grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 1.5rem;
+
+    .userCard,
+    .formCard,
+    .statsCard,
+    .actionsCard {
+      grid-column: 1;
+      grid-row: auto;
+    }
   }
 }
 
@@ -139,6 +197,7 @@
   height: fit-content;
 
   .userAvatar {
+    position: relative;
     width: 120px;
     height: 120px;
     border-radius: 50%;
@@ -159,6 +218,28 @@
       color: var(--ctp-base);
       font-weight: 700;
       font-size: 3rem;
+    }
+
+    .changeAvatarBtn {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--ctp-blue);
+      color: var(--ctp-base);
+      border: 3px solid var(--ctp-surface0);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background: var(--ctp-sapphire);
+        transform: scale(1.1);
+      }
     }
   }
 
@@ -364,6 +445,129 @@
       &:hover {
         background: var(--ctp-surface1);
         border-color: var(--ctp-surface1);
+      }
+    }
+  }
+}
+
+// Stats Card
+.statsCard {
+  background: var(--ctp-surface0);
+  border: 1px solid var(--ctp-surface1);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+
+  .cardTitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--ctp-text);
+    margin: 0 0 1.5rem 0;
+  }
+
+  .statsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+
+    .statItem {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: var(--ctp-surface1);
+      border-radius: 12px;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background: var(--ctp-surface2);
+        transform: translateY(-2px);
+      }
+
+      .statIcon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background: var(--ctp-blue);
+        color: var(--ctp-base);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .statContent {
+        h3 {
+          font-size: 0.875rem;
+          font-weight: 600;
+          color: var(--ctp-subtext1);
+          margin: 0 0 0.25rem 0;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+        }
+
+        .statValue {
+          font-size: 1.5rem;
+          font-weight: 700;
+          color: var(--ctp-text);
+          margin: 0 0 0.25rem 0;
+        }
+
+        .statLabel {
+          font-size: 0.75rem;
+          color: var(--ctp-subtext0);
+        }
+      }
+    }
+  }
+}
+
+// Actions Card
+.actionsCard {
+  background: var(--ctp-surface0);
+  border: 1px solid var(--ctp-surface1);
+  border-radius: 16px;
+  padding: 2rem;
+
+  .cardTitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--ctp-text);
+    margin: 0 0 1.5rem 0;
+  }
+
+  .actionGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+
+    .actionButton {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 1.5rem;
+      background: var(--ctp-surface1);
+      color: var(--ctp-text);
+      border: 1px solid var(--ctp-surface2);
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      cursor: pointer;
+
+      &:hover {
+        background: var(--ctp-surface2);
+        border-color: var(--ctp-blue);
+        color: var(--ctp-blue);
+        transform: translateY(-1px);
+      }
+
+      svg {
+        flex-shrink: 0;
+      }
+
+      span {
+        font-size: 0.95rem;
       }
     }
   }
