@@ -1,9 +1,8 @@
 import { Product } from '../features/products/productsSlice';
-import { products } from '../data/products';
 
-export function getRelatedProducts(currentProduct: Product, limit: number = 4): Product[] {
+export function getRelatedProducts(currentProduct: Product, allProducts: Product[], limit: number = 4): Product[] {
   // First, try to find products in the same category
-  const sameCategory = products.filter(
+  const sameCategory = allProducts.filter(
     p => p.id !== currentProduct.id && p.category === currentProduct.category
   );
 
@@ -13,7 +12,7 @@ export function getRelatedProducts(currentProduct: Product, limit: number = 4): 
   }
 
   // If not enough in same category, add products from other categories
-  const otherProducts = products.filter(
+  const otherProducts = allProducts.filter(
     p => p.id !== currentProduct.id && p.category !== currentProduct.category
   );
 

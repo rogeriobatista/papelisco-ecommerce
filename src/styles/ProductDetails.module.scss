@@ -74,6 +74,27 @@
   margin: 0;
 }
 
+.productMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 1rem 0;
+  padding: 1rem;
+  background: #313244;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.sku,
+.stock {
+  color: #cdd6f4;
+}
+
+.sku strong,
+.stock strong {
+  color: #89b4fa;
+}
+
 .description h3,
 .productFeatures h3 {
   font-size: 1.2rem;
@@ -184,6 +205,12 @@
   background: #585b70;
 }
 
+.addToCartBtn.disabled {
+  background: #313244;
+  color: #6c7086;
+  cursor: not-allowed;
+}
+
 .buyNowBtn {
   background: #89b4fa;
   color: #1e1e2e;
@@ -191,6 +218,12 @@
 
 .buyNowBtn:hover {
   background: #74c7ec;
+}
+
+.buyNowBtn.disabled {
+  background: #6c7086;
+  color: #45475a;
+  cursor: not-allowed;
 }
 
 .totalPrice {

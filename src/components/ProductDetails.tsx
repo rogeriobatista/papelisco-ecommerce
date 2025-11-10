@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Product } from '../features/products/productsSlice';
 import { useAppDispatch } from '../features/hooks';
@@ -16,8 +16,25 @@ type Props = {
 export default function ProductDetails({ product }: Props) {
   const [quantity, setQuantity] = useState(1);
   const [isAddingToCart, setIsAddingToCart] = useState(false);
+  const [allProducts, setAllProducts] = useState<Product[]>([]);
   const dispatch = useAppDispatch();
   const router = useRouter();
+
+  useEffect(() => {
+    const fetchAllProducts = async () => {
+      try {
+        const response = await fetch('/api/products');
+        if (response.ok) {
+          const data = await response.json();
+          setAllProducts(data.products || []);
+        }
+      } catch (error) {
+        console.error('Error fetching products for related products:', error);
+      }
+    };
+
+    fetchAllProducts();
+  }, []);
 
   const handleAddToCart = async () => {
     setIsAddingToCart(true);
@@ -40,6 +57,9 @@ export default function ProductDetails({ product }: Props) {
     router.push('/checkout');
   };
 
+  const maxQuantity = Math.min(10, product.stock || 10);
+  const isOutOfStock = product.stock !== undefined && product.stock <= 0;
+
   return (
     <div className={styles.productDetails}>
       <div className={styles.imageSection}>
@@ -60,6 +80,21 @@ export default function ProductDetails({ product }: Props) {
         <div className={styles.price}>
           ${product.price.toFixed(2)}
         </div>
+
+        {(product.stock !== undefined || product.sku) && (
+          <div className={styles.productMeta}>
+            {product.sku && (
+              <div className={styles.sku}>
+                <strong>SKU:</strong> {product.sku}
+              </div>
+            )}
+            {product.stock !== undefined && (
+              <div className={styles.stock}>
+                <strong>Stock:</strong> {product.stock} available
+              </div>
+            )}
+          </div>
+        )}
         
         <div className={styles.description}>
           <h3>Description</h3>
@@ -120,8 +155,9 @@ export default function ProductDetails({ product }: Props) {
               value={quantity} 
               onChange={(e) => setQuantity(Number(e.target.value))}
               className={styles.quantitySelect}
+              disabled={isOutOfStock}
             >
-              {[...Array(10)].map((_, i) => (
+              {[...Array(maxQuantity)].map((_, i) => (
                 <option key={i + 1} value={i + 1}>
                   {i + 1}
                 </option>
@@ -132,10 +168,10 @@ export default function ProductDetails({ product }: Props) {
           <div className={styles.actionButtons}>
             <button 
               onClick={handleAddToCart} 
-              className={`${styles.addToCartBtn} ${isAddingToCart ? styles.loading : ''}`}
-              disabled={isAddingToCart}
+              className={`${styles.addToCartBtn} ${isAddingToCart ? styles.loading : ''} ${isOutOfStock ? styles.disabled : ''}`}
+              disabled={isAddingToCart || isOutOfStock}
             >
-              {isAddingToCart ? 'Adding...' : 'Add to Cart'}
+              {isOutOfStock ? 'Out of Stock' : isAddingToCart ? 'Adding...' : 'Add to Cart'}
             </button>
             <WishlistButton 
               productId={product.id} 
@@ -144,9 +180,10 @@ export default function ProductDetails({ product }: Props) {
             />
             <button 
               onClick={handleBuyNow} 
-              className={styles.buyNowBtn}
+              className={`${styles.buyNowBtn} ${isOutOfStock ? styles.disabled : ''}`}
+              disabled={isOutOfStock}
             >
-              Buy Now
+              {isOutOfStock ? 'Out of Stock' : 'Buy Now'}
             </button>
           </div>
           
@@ -157,7 +194,7 @@ export default function ProductDetails({ product }: Props) {
       </div>
       
       <div className={styles.relatedProductsSection}>
-        <RelatedProducts currentProduct={product} />
+        <RelatedProducts currentProduct={product} allProducts={allProducts} />
       </div>
     </div>
   );

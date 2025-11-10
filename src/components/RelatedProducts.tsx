@@ -5,10 +5,11 @@ import styles from '../styles/RelatedProducts.module.scss';
 
 type Props = {
   currentProduct: Product;
+  allProducts: Product[];
 };
 
-export default function RelatedProducts({ currentProduct }: Props) {
-  const relatedProducts = getRelatedProducts(currentProduct, 4);
+export default function RelatedProducts({ currentProduct, allProducts }: Props) {
+  const relatedProducts = getRelatedProducts(currentProduct, allProducts, 4);
 
   if (relatedProducts.length === 0) {
     return null;

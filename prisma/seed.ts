@@ -64,54 +64,74 @@ async function main() {
   // Create sample products
   const products = [
     {
-      name: 'iPhone 15 Pro',
-      slug: 'iphone-15-pro',
-      description: 'Latest iPhone with advanced camera system',
-      price: 999.99,
+      name: 'iPhone 15',
+      slug: 'iphone-15',
+      description: 'Latest Apple iPhone with advanced features.',
+      price: 999.00,
       category: phoneCategory.id,
-      sku: 'IPHONE15PRO',
+      sku: 'IPHONE15',
       stockQuantity: 50,
-      image: 'https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=400'
+      image: '/images/iphone15.jpg'
     },
     {
       name: 'Samsung Galaxy S24',
       slug: 'samsung-galaxy-s24',
-      description: 'Flagship Android smartphone',
-      price: 899.99,
+      description: 'Flagship Samsung phone with stunning display.',
+      price: 899.00,
       category: phoneCategory.id,
       sku: 'GALAXYS24',
-      stockQuantity: 45,
-      image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400'
+      stockQuantity: 30,
+      image: '/images/galaxy-s24.svg'
     },
     {
-      name: 'MacBook Pro 16"',
-      slug: 'macbook-pro-16',
-      description: 'Professional laptop for creative work',
-      price: 2499.99,
+      name: 'Kindle Paperwhite',
+      slug: 'kindle-paperwhite',
+      description: 'E-reader with high-resolution display.',
+      price: 129.00,
       category: electronicsCategory.id,
-      sku: 'MACBOOK16',
-      stockQuantity: 25,
-      image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400'
-    },
-    {
-      name: 'iPad Air',
-      slug: 'ipad-air',
-      description: 'Lightweight tablet for productivity',
-      price: 599.99,
-      category: electronicsCategory.id,
-      sku: 'IPADAIR',
-      stockQuantity: 60,
-      image: 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400'
-    },
-    {
-      name: 'The Art of Programming',
-      slug: 'art-of-programming',
-      description: 'Complete guide to software development',
-      price: 49.99,
-      category: booksCategory.id,
-      sku: 'ARTPROG',
+      sku: 'KINDLE',
       stockQuantity: 100,
-      image: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400'
+      image: '/images/kindle.svg'
+    },
+    {
+      name: 'Staedtler Pencil',
+      slug: 'staedtler-pencil',
+      description: 'High-quality graphite pencil.',
+      price: 2.00,
+      category: booksCategory.id, // Using books category as there's no pencils category
+      sku: 'PENCIL',
+      stockQuantity: 500,
+      image: '/images/staedtler-pencil.svg'
+    },
+    {
+      name: 'Pilot G2 Pen',
+      slug: 'pilot-g2-pen',
+      description: 'Smooth gel ink pen for everyday use.',
+      price: 3.00,
+      category: booksCategory.id, // Using books category as there's no pens category
+      sku: 'PILOTG2',
+      stockQuantity: 300,
+      image: '/images/pilot-g2.svg'
+    },
+    {
+      name: 'Harry Potter Book Set',
+      slug: 'harry-potter-set',
+      description: 'Complete set of Harry Potter books.',
+      price: 59.00,
+      category: booksCategory.id,
+      sku: 'HPBOOKS',
+      stockQuantity: 25,
+      image: '/images/harry-potter.svg'
+    },
+    {
+      name: 'Gift Card',
+      slug: 'gift-card',
+      description: 'Perfect gift for any occasion.',
+      price: 25.00,
+      category: booksCategory.id, // Using books category as there's no gifts category
+      sku: 'GIFTCARD',
+      stockQuantity: 1000,
+      image: '/images/gift-card.svg'
     },
   ];
 

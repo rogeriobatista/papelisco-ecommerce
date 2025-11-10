@@ -7,12 +7,14 @@ export type Product = {
   price: number;
   image: string;
   description: string;
+  stock?: number;
+  sku?: string;
 };
 
 export type Filter = {
   category: string;
   search: string;
-  sort: 'price-asc' | 'price-desc' | 'name-asc' | 'name-desc';
+  sort: 'relevance' | 'price-asc' | 'price-desc' | 'name-asc' | 'name-desc' | 'newest';
 };
 
 interface ProductsState {
@@ -25,7 +27,7 @@ const initialState: ProductsState = {
   filter: {
     category: 'all',
     search: '',
-    sort: 'price-asc',
+    sort: 'relevance',
   },
 };
 
