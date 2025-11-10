@@ -298,7 +298,7 @@ export default function CheckoutPage() {
             <h2>Shipping Information</h2>
             <div className={styles.formGrid}>
               <div className={styles.formGroup}>
-                <label htmlFor="firstName">First Name *</label>
+                <label htmlFor="firstName">First Name</label>
                 <input
                   type="text"
                   id="firstName"
@@ -312,7 +312,7 @@ export default function CheckoutPage() {
               </div>
               
               <div className={styles.formGroup}>
-                <label htmlFor="lastName">Last Name *</label>
+                <label htmlFor="lastName">Last Name</label>
                 <input
                   type="text"
                   id="lastName"
@@ -326,7 +326,7 @@ export default function CheckoutPage() {
               </div>
               
               <div className={styles.formGroup}>
-                <label htmlFor="email">Email *</label>
+                <label htmlFor="email">Email</label>
                 <input
                   type="email"
                   id="email"
@@ -340,7 +340,7 @@ export default function CheckoutPage() {
               </div>
               
               <div className={styles.formGroup}>
-                <label htmlFor="phone">Phone *</label>
+                <label htmlFor="phone">Phone</label>
                 <input
                   type="tel"
                   id="phone"
@@ -354,7 +354,7 @@ export default function CheckoutPage() {
               </div>
               
               <div className={`${styles.formGroup} ${styles.fullWidth}`}>
-                <label htmlFor="address">Address *</label>
+                <label htmlFor="address">Address</label>
                 <input
                   type="text"
                   id="address"
@@ -379,7 +379,7 @@ export default function CheckoutPage() {
               </div>
               
               <div className={styles.formGroup}>
-                <label htmlFor="city">City *</label>
+                <label htmlFor="city">City</label>
                 <input
                   type="text"
                   id="city"
@@ -393,7 +393,7 @@ export default function CheckoutPage() {
               </div>
               
               <div className={styles.formGroup}>
-                <label htmlFor="state">State *</label>
+                <label htmlFor="state">State</label>
                 <input
                   type="text"
                   id="state"
@@ -407,7 +407,7 @@ export default function CheckoutPage() {
               </div>
               
               <div className={styles.formGroup}>
-                <label htmlFor="zipCode">ZIP Code *</label>
+                <label htmlFor="zipCode">ZIP Code</label>
                 <input
                   type="text"
                   id="zipCode"
@@ -427,7 +427,7 @@ export default function CheckoutPage() {
             <h2>Payment Information</h2>
             <div className={styles.formGrid}>
               <div className={`${styles.formGroup} ${styles.fullWidth} ${styles.cardNumberGroup}`}>
-                <label htmlFor="cardNumber">Card Number *</label>
+                <label htmlFor="cardNumber">Card Number</label>
                 <div className={styles.cardNumberInput}>
                   <input
                     type="text"
@@ -448,7 +448,7 @@ export default function CheckoutPage() {
               </div>
               
               <div className={styles.formGroup}>
-                <label htmlFor="expiryDate">Expiry Date *</label>
+                <label htmlFor="expiryDate">Expiry Date</label>
                 <input
                   type="text"
                   id="expiryDate"
@@ -464,7 +464,7 @@ export default function CheckoutPage() {
               </div>
               
               <div className={styles.formGroup}>
-                <label htmlFor="cvv">CVV *</label>
+                <label htmlFor="cvv">CVV</label>
                 <input
                   type="text"
                   id="cvv"
@@ -480,7 +480,7 @@ export default function CheckoutPage() {
               </div>
               
               <div className={`${styles.formGroup} ${styles.fullWidth}`}>
-                <label htmlFor="cardName">Name on Card *</label>
+                <label htmlFor="cardName">Name on Card</label>
                 <input
                   type="text"
                   id="cardName"
@@ -514,7 +514,7 @@ export default function CheckoutPage() {
                   <h3>Billing Address</h3>
                   <div className={styles.formGrid}>
                     <div className={styles.formGroup}>
-                      <label htmlFor="billingFirstName">First Name *</label>
+                      <label htmlFor="billingFirstName">First Name</label>
                       <input
                         type="text"
                         id="billingFirstName"
@@ -528,7 +528,7 @@ export default function CheckoutPage() {
                     </div>
                     
                     <div className={styles.formGroup}>
-                      <label htmlFor="billingLastName">Last Name *</label>
+                      <label htmlFor="billingLastName">Last Name</label>
                       <input
                         type="text"
                         id="billingLastName"
@@ -542,7 +542,7 @@ export default function CheckoutPage() {
                     </div>
                     
                     <div className={`${styles.formGroup} ${styles.fullWidth}`}>
-                      <label htmlFor="billingAddress">Address *</label>
+                      <label htmlFor="billingAddress">Address</label>
                       <input
                         type="text"
                         id="billingAddress"
@@ -567,7 +567,7 @@ export default function CheckoutPage() {
                     </div>
                     
                     <div className={styles.formGroup}>
-                      <label htmlFor="billingCity">City *</label>
+                      <label htmlFor="billingCity">City</label>
                       <input
                         type="text"
                         id="billingCity"
@@ -581,7 +581,7 @@ export default function CheckoutPage() {
                     </div>
                     
                     <div className={styles.formGroup}>
-                      <label htmlFor="billingState">State *</label>
+                      <label htmlFor="billingState">State</label>
                       <input
                         type="text"
                         id="billingState"
@@ -595,7 +595,7 @@ export default function CheckoutPage() {
                     </div>
                     
                     <div className={styles.formGroup}>
-                      <label htmlFor="billingZipCode">ZIP Code *</label>
+                      <label htmlFor="billingZipCode">ZIP Code</label>
                       <input
                         type="text"
                         id="billingZipCode"
